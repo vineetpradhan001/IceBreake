@@ -1,0 +1,25 @@
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  gap: 1rem;
+}
+.home > button {
+  transition: 0.15s;
+  font-family: "Space Grotesk", sans-serif;
+  background-color: transparent;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border-radius: 0.25rem;
+  border: 3px solid;
+  padding: 0.3rem 0.6rem;
+  width: fit-content;
+}
+.home > button:hover {
+  transition: 0.15s;
+  background-color: black;
+  color: white;
+  border: 3px solid black;
+}
