@@ -9,6 +9,7 @@ body {
   min-height: 100vh;
   cursor: default;
   font-family: "Space Grotesk", sans-serif;
+  gap: 0.6rem;
 }
 
 header {
@@ -24,4 +25,47 @@ header > span {
 }
 header > img {
   height: 40px;
+}
+
+input {
+  transition: 0.15s;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1rem;
+  border-radius: 0.25rem;
+  border: 3px solid grey;
+  outline: none;
+  padding: 0.2rem 0.4rem;
+  font-weight: 500;
+}
+input:focus {
+  transition: 0.15s;
+  border: 3px solid;
+}
+
+button {
+  transition: 0.15s;
+  font-family: "Space Grotesk", sans-serif;
+  background-color: transparent;
+  border-radius: 0.25rem;
+  border: 3px solid;
+  padding: 0.3rem 0.6rem;
+}
+button:hover {
+  transition: 0.15s;
+  background-color: black;
+  color: white;
+  border: 3px solid black;
+}
+
+::-webkit-scrollbar {
+  width: 3.5px;
+}
+::-webkit-scrollbar-thumb {
+  transition: 0.15s;
+  background: rgb(91, 91, 91);
+  cursor: default;
+}
+::-webkit-scrollbar-thumb:hover {
+  transition: 0.15s;
+  background: black;
 }

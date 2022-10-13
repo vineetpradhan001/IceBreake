@@ -1,0 +1,16 @@
+textarea {
+  transition: 0.15s;
+  resize: none;
+  max-height: 35vh;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1rem;
+  border-radius: 0.25rem;
+  border: 3px solid grey;
+  outline: none;
+  padding: 0.2rem 0.4rem;
+  font-weight: 500;
+}
+textarea:focus-visible {
+  transition: 0.15s;
+  border: 3px solid;
+}

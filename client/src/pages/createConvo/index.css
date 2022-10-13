@@ -1,0 +1,11 @@
+.create-convo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  padding: 0 5.5vw;
+}
+.create-convo > button {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-left: auto;
+}
