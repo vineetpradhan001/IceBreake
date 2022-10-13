@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <div className="home">
       <button onClick={() => navigate("/createconvo")}>Create Convo</button>
-      <button>Join Convo</button>
+      <button onClick={() => navigate("/joinconvo")}>Join Convo</button>
       <button>Search User</button>
       <button>Account</button>
     </div>

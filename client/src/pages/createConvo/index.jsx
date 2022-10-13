@@ -17,7 +17,7 @@ export default function CreateConvo() {
         value={name}
         onChange={(e) => setName(e.target.value)}
         placeholder="Convo Name"
-        maxLength={60}
+        maxLength={80}
       />
       <Textarea
         value={opening}
@@ -29,7 +29,8 @@ export default function CreateConvo() {
         value={maxUser}
         onChange={(e) =>
           parseInt(e.target.value)
-            ? setMaxUser(parseInt(e.target.value))
+            ? parseInt(e.target.value) <= 20 &&
+              setMaxUser(parseInt(e.target.value))
             : setMaxUser("")
         }
         placeholder="Maximum Users (< 20 Users)"

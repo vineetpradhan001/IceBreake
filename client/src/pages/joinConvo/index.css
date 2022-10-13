@@ -1,0 +1,14 @@
+.join-convo {
+  display: flex;
+  flex-direction: column;
+  padding: 0 5.5vw;
+  gap: 0.6rem;
+  flex-grow: 1;
+  overflow: hidden;
+}
+.join-convo .convo-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  overflow: auto;
+}
