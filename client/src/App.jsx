@@ -7,6 +7,8 @@ import JoinConvo from "./pages/joinConvo";
 import SearchUser from "./pages/searchUser";
 import Account from "./pages/account";
 import EditProfile from "./pages/editProfile";
+import Signup from "./pages/signup";
+import Login from "./pages/login";
 
 export default function App() {
   const navigate = useNavigate();
@@ -19,6 +21,8 @@ export default function App() {
       </header>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/createconvo" element={<CreateConvo />} />
         <Route path="/joinconvo" element={<JoinConvo />} />
         <Route path="/searchuser" element={<SearchUser />} />

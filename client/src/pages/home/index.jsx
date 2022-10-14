@@ -12,6 +12,7 @@ export default function Home() {
       <button onClick={() => navigate("/joinconvo")}>Join Convo</button>
       <button onClick={() => navigate("/searchuser")}>Search User</button>
       <button onClick={() => navigate("/account")}>Account</button>
+      <button>Logout</button>
     </div>
   );
 }

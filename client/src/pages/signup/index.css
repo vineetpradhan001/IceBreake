@@ -1,0 +1,33 @@
+.signup {
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+  gap: 1.6rem;
+  background-color: white;
+  padding: 2.5rem 2rem;
+  border-radius: 0.25rem;
+  box-shadow: 0 0 6px #a4a4a4;
+  margin: auto;
+}
+.signup > form > button {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+.signup form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.signup .title {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin: 0 auto;
+  margin-bottom: 0.5rem;
+}
+.signup .hori-line {
+  height: 0.1rem;
+  background-color: black;
+}
+.signup .navigate {
+  font-weight: 500;
+}
