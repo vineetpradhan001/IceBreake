@@ -5,6 +5,7 @@ import Home from "./pages/home";
 import CreateConvo from "./pages/createConvo";
 import JoinConvo from "./pages/joinConvo";
 import SearchUser from "./pages/searchUser";
+import Account from "./pages/account";
 
 export default function App() {
   const navigate = useNavigate();
@@ -20,6 +21,8 @@ export default function App() {
         <Route path="/createconvo" element={<CreateConvo />} />
         <Route path="/joinconvo" element={<JoinConvo />} />
         <Route path="/searchuser" element={<SearchUser />} />
+        <Route path="/user/:id" element={<Account />} />
+        <Route path="/account" element={<Account />} />
       </Routes>
     </>
   );

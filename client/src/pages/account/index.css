@@ -1,0 +1,41 @@
+.account {
+  padding: 0 5.5vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+.account .user {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+.account .user-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+.account .user-details > span {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+.account .user img {
+  height: 95px;
+}
+.account .follow-details {
+  display: flex;
+  gap: 1.5rem;
+}
+.account .followers {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.account .followers > span:nth-child(1) {
+  font-weight: 500;
+}
+.account .vert-line {
+  width: 0.1rem;
+  background: black;
+}

@@ -1,10 +1,12 @@
 import React, { useRef, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 import "./index.css";
 
 export default function Convo() {
   const openingMessageRef = useRef(null);
   const [expandMessage, setExpandMessage] = useState(0);
+  const location = useLocation();
 
   return (
     <div className="convo">
@@ -36,7 +38,9 @@ export default function Convo() {
           Opening Message (Use Dropdown if message is big)
         </div>
       </div>
-      <button className="join-button">Join</button>
+      {location.pathname === "/account" ? null : (
+        <button className="join-button">Join</button>
+      )}
     </div>
   );
 }

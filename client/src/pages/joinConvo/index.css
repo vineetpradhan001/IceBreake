@@ -6,7 +6,7 @@
   flex-grow: 1;
   overflow: hidden;
 }
-.join-convo .convo-list {
+.convo-list {
   display: flex;
   flex-direction: column;
   gap: 1.5px;
