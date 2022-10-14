@@ -1,0 +1,19 @@
+.search-user .user {
+  transition: 0.15s;
+  display: flex;
+  align-items: center;
+  padding: 0.8rem;
+  gap: 0.5rem;
+  background-color: white;
+}
+.search-user .user:hover {
+  transition: 0.15s;
+  background-color: rgb(200, 200, 200);
+}
+.search-user .username {
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+.search-user .user-avatar {
+  height: 30px;
+}

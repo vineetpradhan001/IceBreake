@@ -9,6 +9,7 @@
 .join-convo .convo-list {
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
+  gap: 1.5px;
   overflow: auto;
+  background-color: rgb(77, 77, 77);
 }

@@ -10,7 +10,7 @@ export default function Home() {
     <div className="home">
       <button onClick={() => navigate("/createconvo")}>Create Convo</button>
       <button onClick={() => navigate("/joinconvo")}>Join Convo</button>
-      <button>Search User</button>
+      <button onClick={() => navigate("/searchuser")}>Search User</button>
       <button>Account</button>
     </div>
   );

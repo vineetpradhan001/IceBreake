@@ -61,6 +61,9 @@ button:hover {
 ::-webkit-scrollbar {
   width: 3.5px;
 }
+::-webkit-scrollbar-track-piece {
+  background-color: white;
+}
 ::-webkit-scrollbar-thumb {
   transition: 0.15s;
   background: rgb(91, 91, 91);

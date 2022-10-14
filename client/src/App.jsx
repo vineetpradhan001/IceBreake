@@ -4,6 +4,7 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import Home from "./pages/home";
 import CreateConvo from "./pages/createConvo";
 import JoinConvo from "./pages/joinConvo";
+import SearchUser from "./pages/searchUser";
 
 export default function App() {
   const navigate = useNavigate();
@@ -18,6 +19,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/createconvo" element={<CreateConvo />} />
         <Route path="/joinconvo" element={<JoinConvo />} />
+        <Route path="/searchuser" element={<SearchUser />} />
       </Routes>
     </>
   );
