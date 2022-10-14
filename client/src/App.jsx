@@ -6,6 +6,7 @@ import CreateConvo from "./pages/createConvo";
 import JoinConvo from "./pages/joinConvo";
 import SearchUser from "./pages/searchUser";
 import Account from "./pages/account";
+import EditProfile from "./pages/editProfile";
 
 export default function App() {
   const navigate = useNavigate();
@@ -23,6 +24,7 @@ export default function App() {
         <Route path="/searchuser" element={<SearchUser />} />
         <Route path="/user/:id" element={<Account />} />
         <Route path="/account" element={<Account />} />
+        <Route path="/editprofile" element={<EditProfile />} />
       </Routes>
     </>
   );

@@ -1,10 +1,14 @@
 import React from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import Convo from "../../components/convo";
 
 import "./index.css";
 
 export default function Account() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   return (
     <div className="account">
       <div className="user">
@@ -24,6 +28,14 @@ export default function Account() {
           </div>
         </div>
       </div>
+      {location.pathname === "/account" ? (
+        <button onClick={() => navigate("/editprofile")}>Edit Profile</button>
+      ) : (
+        <div className="button-group">
+          <button>Follow</button>
+          <button>Chat</button>
+        </div>
+      )}
       <div className="convo-list">
         {[...Array(20)].map((_data, index) => (
           <Convo key={index} />
