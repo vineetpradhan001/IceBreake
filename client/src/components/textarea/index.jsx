@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 
 import "./index.css";
 
 export default function Textarea(props) {
+  const ref = useRef();
+
+  useEffect(() => {
+    if (ref.current.scrollHeight > ref.current.clientHeight) {
+      ref.current.style.height = ref.current.scrollHeight + "px";
+    }
+  }, []);
+
   const changeHandler = (e) => {
     props.onChange(e.target.value);
     e.target.style.height = "auto";
@@ -18,6 +26,7 @@ export default function Textarea(props) {
       onChange={changeHandler}
       rows={1}
       placeholder={props.placeholder}
+      ref={ref}
     />
   );
 }

@@ -9,6 +9,7 @@ import Account from "./pages/account";
 import EditProfile from "./pages/editProfile";
 import Signup from "./pages/signup";
 import Login from "./pages/login";
+import EditConvo from "./pages/editConvo";
 
 export default function App() {
   const navigate = useNavigate();
@@ -24,6 +25,7 @@ export default function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/createconvo" element={<CreateConvo />} />
+        <Route path="/editconvo" element={<EditConvo />} />
         <Route path="/joinconvo" element={<JoinConvo />} />
         <Route path="/searchuser" element={<SearchUser />} />
         <Route path="/user/:id" element={<Account />} />

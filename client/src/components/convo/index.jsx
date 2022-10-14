@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import "./index.css";
 
@@ -7,6 +7,7 @@ export default function Convo() {
   const openingMessageRef = useRef(null);
   const [expandMessage, setExpandMessage] = useState(0);
   const location = useLocation();
+  const navigate = useNavigate();
 
   return (
     <div className="convo">
@@ -38,7 +39,11 @@ export default function Convo() {
           Opening Message (Use Dropdown if message is big)
         </div>
       </div>
-      {location.pathname === "/account" ? null : (
+      {location.pathname === "/account" ? (
+        <button className="join-button" onClick={() => navigate("/editconvo")}>
+          Edit
+        </button>
+      ) : (
         <button className="join-button">Join</button>
       )}
     </div>
