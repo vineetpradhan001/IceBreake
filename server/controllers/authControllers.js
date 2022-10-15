@@ -61,7 +61,26 @@ export const login = async (req, res) => {
     res.status(400).json(errors);
   }
 };
-export const logout = (req, res) => {
+export const logout = (_req, res) => {
   res.cookie("jwt", "", { maxAge: 1 });
   res.status(200).json("Logout Successfully");
+};
+export const verifyJWT = (req, res) => {
+  const token = req.cookies.jwt;
+  if (token) {
+    jwt.verify(token, process.env.SECRET_KEY, async (err, decodedToken) => {
+      if (err) {
+        res.status(400).json("Invalid JWT");
+      } else {
+        let user = await User.findById(decodedToken.id);
+        if (user) {
+          res.status(200).json(user._id);
+        } else {
+          res.status(400).json("User not found");
+        }
+      }
+    });
+  } else {
+    res.status(400).json("JWT not found");
+  }
 };
