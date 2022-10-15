@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import isAlphanumeric from "validator/lib/isalphanumeric.js";
 import isEmail from "validator/lib/isEmail.js";
+import bcrypt from "bcrypt";
 
 const UserSchema = mongoose.Schema({
   email: {
@@ -28,6 +29,27 @@ const UserSchema = mongoose.Schema({
     minLength: [6, "Password must have atleast 6 characters"],
   },
 });
+
+UserSchema.pre("save", async function (next) {
+  const salt = await bcrypt.genSalt();
+  this.password = await bcrypt.hash(this.password, salt);
+  next();
+});
+
+UserSchema.statics.login = async function (email, password) {
+  const bool = isEmail(email);
+  const user = bool
+    ? await this.findOne({ email })
+    : await this.findOne({ username: email });
+  if (user) {
+    const auth = await bcrypt.compare(password, user.password);
+    if (auth) {
+      return user;
+    }
+    throw Error("incorrect password");
+  }
+  throw Error(`${bool ? "incorrect email" : "incorrect username"}`);
+};
 
 const User = mongoose.model("user", UserSchema);
 export default User;

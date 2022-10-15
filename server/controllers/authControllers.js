@@ -4,6 +4,16 @@ import jwt from "jsonwebtoken";
 const handleErrors = (err) => {
   let errors = {};
 
+  if (err.message === "incorrect email") {
+    errors.email = "Email is not registered";
+  }
+  if (err.message === "incorrect username") {
+    errors.username = "Username is not registered";
+  }
+  if (err.message === "incorrect password") {
+    errors.password = "Incorrect Password";
+  }
+
   if (err.code === 11000) {
     if (err.keyValue?.email) {
       errors.email = "Email is already registered";
@@ -21,8 +31,9 @@ const handleErrors = (err) => {
   return errors;
 };
 
+const maxAge = 3 * 24 * 60 * 60;
 const createToken = (id) =>
-  jwt.sign({ id }, process.env.SECRET_KEY, { expiresIn: 3 * 24 * 60 * 60 });
+  jwt.sign({ id }, process.env.SECRET_KEY, { expiresIn: maxAge });
 
 export const signup = async (req, res) => {
   const data = req.body;
@@ -30,10 +41,23 @@ export const signup = async (req, res) => {
   try {
     const user = await User.create(data);
     const token = createToken(user._id);
-    res.cookie("jwt", token, { maxAge: 3 * 24 * 60 * 60 * 1000 });
+    res.cookie("jwt", token, { maxAge: maxAge * 1000 });
     res.status(200).json(user._id);
   } catch (e) {
     const errors = handleErrors(e);
+    res.status(400).json(errors);
+  }
+};
+export const login = async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const user = await User.login(email, password);
+    const token = createToken(user._id);
+    res.cookie("jwt", token, { maxAge: maxAge * 1000 });
+    res.status(200).json(user._id);
+  } catch (err) {
+    const errors = handleErrors(err);
     res.status(400).json(errors);
   }
 };
