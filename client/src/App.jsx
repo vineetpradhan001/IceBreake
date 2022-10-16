@@ -1,5 +1,7 @@
-import React from "react";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
+
+import { useVerifyJWTQuery } from "./features/authApi";
 
 import Home from "./pages/home";
 import CreateConvo from "./pages/createConvo";
@@ -13,6 +15,21 @@ import EditConvo from "./pages/editConvo";
 
 export default function App() {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const verifyJWT = useVerifyJWTQuery();
+
+  useEffect(() => {
+    verifyJWT.isError &&
+      location.pathname !== "/signup" &&
+      location.pathname !== "/login" &&
+      navigate("/login", { replace: true });
+  }, [verifyJWT.isError]);
+  useEffect(() => {
+    verifyJWT.isSuccess &&
+      (location.pathname === "/signup" || location.pathname === "/login") &&
+      navigate("/", { replace: true });
+  }, [verifyJWT.isSuccess]);
 
   return (
     <>

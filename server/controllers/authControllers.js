@@ -8,7 +8,7 @@ const handleErrors = (err) => {
     errors.email = "Email is not registered";
   }
   if (err.message === "incorrect username") {
-    errors.username = "Username is not registered";
+    errors.email = "Username is not registered";
   }
   if (err.message === "incorrect password") {
     errors.password = "Incorrect Password";
