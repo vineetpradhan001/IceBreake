@@ -6,6 +6,8 @@ import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 
 import authRouter from "./routes/authRoutes.js";
+import convoRouter from "./routes/convoRoutes.js";
+import isNumeric from "validator/lib/isnumeric.js";
 
 const app = express();
 dotenv.config();
@@ -15,6 +17,7 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 app.use(cookieParser());
 app.use("/", authRouter);
+app.use("/convo", convoRouter);
 
 const CONNECTION_URL = "mongodb://localhost:27017/icebreaker";
 const PORT = process.env.PORT || 5000;
