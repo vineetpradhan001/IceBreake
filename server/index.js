@@ -7,7 +7,6 @@ import cookieParser from "cookie-parser";
 
 import authRouter from "./routes/authRoutes.js";
 import convoRouter from "./routes/convoRoutes.js";
-import isNumeric from "validator/lib/isnumeric.js";
 
 const app = express();
 dotenv.config();

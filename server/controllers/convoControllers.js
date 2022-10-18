@@ -11,16 +11,26 @@ const handleErrors = (err) => {
   return errors;
 };
 
-export const getConvo = async (req, res) => {
-  const { title } = req.query;
-
+export const getConvos = async (req, res) => {
+  const query = req.query;
+  if (query.title) {
+    query.title = { $regex: `${query.title}`, $options: "i" };
+  } else {
+    delete query.title;
+  }
   try {
-    const convos = title
-      ? await Convo.find({
-          title: { $regex: `${title}`, $options: "i" },
-        })
-      : await Convo.find();
+    const convos = await Convo.find(query);
     res.status(200).json(convos);
+  } catch (e) {
+    res.status(400).json(e);
+  }
+};
+
+export const getConvo = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const convo = await Convo.findById(id);
+    res.status(200).json(convo);
   } catch (e) {
     res.status(400).json(e);
   }
@@ -42,8 +52,8 @@ export const deleteConvo = async (req, res) => {
   const { id } = req.params;
 
   try {
-    await Convo.findByIdAndDelete(id);
-    res.status(200).json("Deleted Successfully");
+    const convo = await Convo.findByIdAndDelete(id);
+    res.status(200).json(convo._id);
   } catch (e) {
     res.status(400).json(e);
   }
@@ -54,8 +64,10 @@ export const updateConvo = async (req, res) => {
   const body = req.body;
 
   try {
-    await Convo.findByIdAndUpdate(id, body);
-    res.status(200).json("Updated Successfully");
+    console.log(id, body);
+    const convo = await Convo.findByIdAndUpdate(id, body, { new: true });
+    console.log(convo);
+    res.status(200).json(convo._id);
   } catch (e) {
     res.status(400).json(e);
   }

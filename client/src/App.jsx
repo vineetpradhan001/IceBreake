@@ -42,7 +42,7 @@ export default function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/createconvo" element={<CreateConvo />} />
-        <Route path="/editconvo" element={<EditConvo />} />
+        <Route path="/editconvo/:id" element={<EditConvo />} />
         <Route path="/joinconvo" element={<JoinConvo />} />
         <Route path="/searchuser" element={<SearchUser />} />
         <Route path="/user/:id" element={<Account />} />

@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import "./index.css";
 
-export default function Convo() {
+export default function Convo(props) {
   const openingMessageRef = useRef(null);
   const [expandMessage, setExpandMessage] = useState(0);
   const location = useLocation();
@@ -12,8 +12,8 @@ export default function Convo() {
   return (
     <div className="convo">
       <div className="convo-details">
-        <div className="username">username</div>
-        <div className="convo-name">Convo Name</div>
+        <div className="username">{props.convo.createdBy}</div>
+        <div className="convo-name">{props.convo.title}</div>
         <div
           ref={openingMessageRef}
           className="opening-message"
@@ -26,21 +26,14 @@ export default function Convo() {
             }`,
           }}
         >
-          Opening Message (Use Dropdown if message is big) Opening Message (Use
-          Dropdown if message is big) Opening Message (Use Dropdown if message
-          is big) Opening Message (Use Dropdown if message is big) Opening
-          Message (Use Dropdown if message is big) Opening Message (Use Dropdown
-          if message is big) Opening Message (Use Dropdown if message is big)
-          Opening Message (Use Dropdown if message is big) Opening Message (Use
-          Dropdown if message is big) Opening Message (Use Dropdown if message
-          is big) Opening Message (Use Dropdown if message is big) Opening
-          Message (Use Dropdown if message is big) Opening Message (Use Dropdown
-          if message is big) Opening Message (Use Dropdown if message is big)
-          Opening Message (Use Dropdown if message is big)
+          {props.convo.openingMessage}
         </div>
       </div>
       {location.pathname === "/account" ? (
-        <button className="join-button" onClick={() => navigate("/editconvo")}>
+        <button
+          className="join-button"
+          onClick={() => navigate(`/editconvo/${props.convo._id}`)}
+        >
           Edit
         </button>
       ) : (

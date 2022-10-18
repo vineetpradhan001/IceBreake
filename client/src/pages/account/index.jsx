@@ -1,5 +1,7 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useGetConvosQuery } from "../../features/convoApi";
+import { useVerifyJWTQuery } from "../../features/authApi";
 
 import Convo from "../../components/convo";
 
@@ -8,6 +10,9 @@ import "./index.css";
 export default function Account() {
   const navigate = useNavigate();
   const location = useLocation();
+
+  const verifyJWT = useVerifyJWTQuery();
+  const getConvo = useGetConvosQuery({ createdBy: verifyJWT.data });
 
   return (
     <div className="account">
@@ -29,16 +34,19 @@ export default function Account() {
         </div>
       </div>
       {location.pathname === "/account" ? (
-        <button onClick={() => navigate("/editprofile")}>Edit Profile</button>
+        <div className="button-group">
+          <button onClick={() => navigate("/editprofile")}>Edit Profile</button>
+        </div>
       ) : (
         <div className="button-group">
           <button>Follow</button>
           <button>Chat</button>
         </div>
       )}
+      <div className="hori-line"></div>
       <div className="convo-list">
-        {[...Array(20)].map((_data, index) => (
-          <Convo key={index} />
+        {getConvo.data?.map((c, index) => (
+          <Convo key={index} convo={c} />
         ))}
       </div>
     </div>

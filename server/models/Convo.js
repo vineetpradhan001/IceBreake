@@ -17,7 +17,7 @@ const ConvoSchema = mongoose.Schema(
       required: [true, "Please enter maximum number of users you want"],
       validate: [isNumeric, "Please enter a valid number"],
     },
-    createdBy: String,
+    createdBy: { type: String, required: [true, "Please enter userId"] },
     users: { type: Number, default: 0 },
   },
   { timestamps: true }

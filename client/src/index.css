@@ -73,3 +73,9 @@ button:hover {
   transition: 0.15s;
   background: black;
 }
+
+.error {
+  margin-left: 0.3rem;
+  font-weight: 500;
+  color: red;
+}

@@ -4,8 +4,12 @@
   gap: 0.9rem;
   padding: 0 5.5vw;
 }
-.create-convo > button {
+.create-convo > .button-group {
+  margin-left: auto;
+  display: flex;
+  gap: 0.5rem;
+}
+.create-convo button {
   font-size: 1rem;
   font-weight: 500;
-  margin-left: auto;
 }

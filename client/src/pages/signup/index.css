@@ -21,11 +21,6 @@
 .signup input {
   flex-grow: 1;
 }
-.signup .error {
-  margin-left: 0.3rem;
-  font-weight: 500;
-  color: red;
-}
 .signup .title {
   font-size: 1.25rem;
   font-weight: 500;

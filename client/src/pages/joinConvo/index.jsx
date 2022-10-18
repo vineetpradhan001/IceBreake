@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useGetConvosQuery } from "../../features/convoApi";
+import { useVerifyJWTQuery } from "../../features/authApi";
 
 import Convo from "../../components/convo";
 
 import "./index.css";
 
 export default function JoinConvo() {
-  const [search, setSearch] = useState();
+  const [search, setSearch] = useState("");
+  const getConvo = useGetConvosQuery({ title: search });
+  const verifyJWT = useVerifyJWTQuery();
 
   return (
     <div className="join-convo">
@@ -16,9 +20,11 @@ export default function JoinConvo() {
         onChange={(e) => setSearch(e.target.value)}
       />
       <div className="convo-list">
-        {[...Array(20)].map((_data, index) => (
-          <Convo key={index} />
-        ))}
+        {getConvo.data?.map((c, index) =>
+          c.createdBy === verifyJWT.data ? null : (
+            <Convo key={index} convo={c} />
+          )
+        )}
       </div>
     </div>
   );
