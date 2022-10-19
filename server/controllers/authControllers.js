@@ -1,4 +1,5 @@
 import User from "../models/User.js";
+import Convo from "../models/Convo.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 
@@ -81,7 +82,7 @@ export const login = async (req, res) => {
 };
 export const logout = (_req, res) => {
   res.cookie("jwt", "", { maxAge: 1 });
-  res.status(200).json("Logout Successfully");
+  res.status(200).json("Logged out Successfully");
 };
 export const currentUser = async (req, res) => {
   try {
@@ -119,5 +120,22 @@ export const updateUser = async (req, res) => {
   } catch (e) {
     const errors = handleErrors(e);
     res.status(400).json(errors);
+  }
+};
+export const deleteUser = async (req, res) => {
+  const { currPassword } = req.body;
+
+  try {
+    const user = await verifyJWT(req.cookies.jwt);
+    const auth = await bcrypt.compare(currPassword, user.password);
+    if (auth) {
+      await Convo.deleteMany({ createdBy: user._id });
+      const deletedUser = await User.findByIdAndDelete(user._id);
+      res.status(200).json(deletedUser._id);
+    } else {
+      res.status(400).json({ currPassword: "Incorrect Password" });
+    }
+  } catch (e) {
+    res.status(400).json(e);
   }
 };

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   useCurrentUserQuery,
+  useDeleteUserMutation,
   useUpdateUserMutation,
 } from "../../features/authApi";
 
@@ -17,6 +18,7 @@ export default function EditProfile() {
   const navigate = useNavigate();
   const currentUser = useCurrentUserQuery();
   const [updateUser, updateUserStatus] = useUpdateUserMutation();
+  const [deleteUser, deleteUserStatus] = useDeleteUserMutation();
 
   useEffect(() => {
     if (currentUser.isSuccess) {
@@ -30,6 +32,9 @@ export default function EditProfile() {
   useEffect(() => {
     updateUserStatus.isError && setError(updateUserStatus.error.data);
   }, [updateUserStatus.isError]);
+  useEffect(() => {
+    deleteUserStatus.isError && setError(deleteUserStatus.error.data);
+  }, [deleteUserStatus.isError]);
 
   return (
     <div className="create-convo edit-profile">
@@ -86,11 +91,18 @@ export default function EditProfile() {
         />
         <div className="error">{error.currPassword}</div>
       </div>
-      <button
-        onClick={() => updateUser({ email, username, password, currPassword })}
-      >
-        Update Profile
-      </button>
+      <div className="button-group">
+        <button onClick={() => deleteUser({ currPassword })}>
+          Delete Profile
+        </button>
+        <button
+          onClick={() =>
+            updateUser({ email, username, password, currPassword })
+          }
+        >
+          Update Profile
+        </button>
+      </div>
     </div>
   );
 }
