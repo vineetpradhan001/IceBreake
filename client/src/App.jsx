@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 
-import { useVerifyJWTQuery } from "./features/authApi";
+import { useCurrentUserQuery } from "./features/authApi";
 
 import Home from "./pages/home";
 import CreateConvo from "./pages/createConvo";
@@ -17,19 +17,19 @@ export default function App() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const verifyJWT = useVerifyJWTQuery();
+  const currentUser = useCurrentUserQuery();
 
   useEffect(() => {
-    verifyJWT.isError &&
+    currentUser.isError &&
       location.pathname !== "/signup" &&
       location.pathname !== "/login" &&
       navigate("/login", { replace: true });
-  }, [verifyJWT.isError]);
+  }, [currentUser.isError]);
   useEffect(() => {
-    verifyJWT.isSuccess &&
+    currentUser.isSuccess &&
       (location.pathname === "/signup" || location.pathname === "/login") &&
       navigate("/", { replace: true });
-  }, [verifyJWT.isSuccess]);
+  }, [currentUser.isSuccess]);
 
   return (
     <>

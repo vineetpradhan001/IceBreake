@@ -4,12 +4,12 @@ export const authApi = createApi({
   reducerPath: "authApi",
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000" }),
   endpoints: (builder) => ({
-    verifyJWT: builder.query({
+    currentUser: builder.query({
       query: () => ({
-        url: "/verifyjwt",
+        url: "/currentuser",
         credentials: "include",
       }),
-      providesTags: (result) => ["currentUser"],
+      providesTags: ["currentUser"],
     }),
     signup: builder.mutation({
       query: (body) => ({
@@ -40,7 +40,7 @@ export const authApi = createApi({
 });
 
 export const {
-  useVerifyJWTQuery,
+  useCurrentUserQuery,
   useSignupMutation,
   useLoginMutation,
   useLogoutMutation,

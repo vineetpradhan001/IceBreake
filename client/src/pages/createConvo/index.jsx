@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useCreateConvoMutation } from "../../features/convoApi";
-import { useVerifyJWTQuery } from "../../features/authApi";
+import { useCurrentUserQuery } from "../../features/authApi";
 import { useNavigate } from "react-router-dom";
 
 import Textarea from "../../components/textarea";
@@ -16,7 +16,7 @@ export default function CreateConvo() {
   const navigate = useNavigate();
 
   const [createConvo, status] = useCreateConvoMutation();
-  const verifyJWT = useVerifyJWTQuery();
+  const currentUser = useCurrentUserQuery();
 
   useEffect(() => {
     status.isError && setError(status.error.data);
@@ -31,7 +31,7 @@ export default function CreateConvo() {
       title,
       openingMessage,
       maxUsers,
-      createdBy: verifyJWT.data,
+      createdBy: currentUser.data._id,
     });
   };
 

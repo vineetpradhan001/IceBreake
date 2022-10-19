@@ -1,7 +1,7 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useGetConvosQuery } from "../../features/convoApi";
-import { useVerifyJWTQuery } from "../../features/authApi";
+import { useCurrentUserQuery } from "../../features/authApi";
 
 import Convo from "../../components/convo";
 
@@ -11,15 +11,15 @@ export default function Account() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const verifyJWT = useVerifyJWTQuery();
-  const getConvo = useGetConvosQuery({ createdBy: verifyJWT.data });
+  const currentUser = useCurrentUserQuery();
+  const getConvo = useGetConvosQuery({ createdBy: currentUser.data._id });
 
   return (
     <div className="account">
       <div className="user">
         <img src="/man.png" alt="" />
         <div className="user-details">
-          <span>username</span>
+          <span>{currentUser.data.username}</span>
           <div className="follow-details">
             <div className="followers">
               <span>Followers</span>

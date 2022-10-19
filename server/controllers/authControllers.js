@@ -30,6 +30,19 @@ const handleErrors = (err) => {
   }
   return errors;
 };
+const verifyJWT = async (token) => {
+  if (token) {
+    try {
+      const decodedToken = jwt.verify(token, process.env.SECRET_KEY);
+      const user = await User.findById(decodedToken.id);
+      return user;
+    } catch (e) {
+      throw Error(e);
+    }
+  } else {
+    throw Error("JWT not found");
+  }
+};
 
 const maxAge = 3 * 24 * 60 * 60;
 const createToken = (id) =>
@@ -65,22 +78,18 @@ export const logout = (_req, res) => {
   res.cookie("jwt", "", { maxAge: 1 });
   res.status(200).json("Logout Successfully");
 };
-export const verifyJWT = (req, res) => {
-  const token = req.cookies.jwt;
-  if (token) {
-    jwt.verify(token, process.env.SECRET_KEY, async (err, decodedToken) => {
-      if (err) {
-        res.status(400).json("Invalid JWT");
-      } else {
-        let user = await User.findById(decodedToken.id);
-        if (user) {
-          res.status(200).json(user._id);
-        } else {
-          res.status(400).json("User not found");
-        }
-      }
-    });
-  } else {
-    res.status(400).json("JWT not found");
+export const currentUser = async (req, res) => {
+  try {
+    let user = await verifyJWT(req.cookies.jwt);
+    if (user) {
+      user = user.toJSON();
+      delete user.password;
+      res.status(200).json(user);
+    } else {
+      throw Error("User not found");
+    }
+  } catch (e) {
+    console.log(e);
+    res.status(400).json(e);
   }
 };
