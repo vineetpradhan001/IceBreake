@@ -15,19 +15,19 @@ import EditConvo from "./pages/editConvo";
 
 export default function App() {
   const navigate = useNavigate();
-  const location = useLocation();
+  const { pathname } = useLocation();
 
   const currentUser = useCurrentUserQuery();
 
   useEffect(() => {
     currentUser.isError &&
-      location.pathname !== "/signup" &&
-      location.pathname !== "/login" &&
+      pathname !== "/signup" &&
+      pathname !== "/login" &&
       navigate("/login", { replace: true });
   }, [currentUser.isError]);
   useEffect(() => {
     currentUser.isSuccess &&
-      (location.pathname === "/signup" || location.pathname === "/login") &&
+      (pathname === "/signup" || pathname === "/login") &&
       navigate("/", { replace: true });
   }, [currentUser.isSuccess]);
 

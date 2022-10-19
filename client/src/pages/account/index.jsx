@@ -1,7 +1,8 @@
 import React from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useGetConvosQuery } from "../../features/convoApi";
 import { useCurrentUserQuery } from "../../features/authApi";
+import { useGetUserQuery } from "../../features/userApi";
 
 import Convo from "../../components/convo";
 
@@ -9,17 +10,19 @@ import "./index.css";
 
 export default function Account() {
   const navigate = useNavigate();
-  const location = useLocation();
+  const { pathname } = useLocation();
+  const { id } = useParams();
 
-  const currentUser = useCurrentUserQuery();
-  const getConvo = useGetConvosQuery({ createdBy: currentUser.data?._id });
+  const user =
+    pathname === "/account" ? useCurrentUserQuery() : useGetUserQuery(id);
+  const getConvos = useGetConvosQuery({ createdBy: user.data?._id });
 
   return (
     <div className="account">
       <div className="user">
         <img src="/man.png" alt="" />
         <div className="user-details">
-          <span>{currentUser.data?.username}</span>
+          <span>{user.data?.username}</span>
           <div className="follow-details">
             <div className="followers">
               <span>Followers</span>
@@ -33,7 +36,7 @@ export default function Account() {
           </div>
         </div>
       </div>
-      {location.pathname === "/account" ? (
+      {pathname === "/account" ? (
         <div className="button-group">
           <button onClick={() => navigate("/editprofile")}>Edit Profile</button>
         </div>
@@ -45,7 +48,7 @@ export default function Account() {
       )}
       <div className="hori-line"></div>
       <div className="convo-list">
-        {getConvo.data?.map((c, index) => (
+        {getConvos.data?.map((c, index) => (
           <Convo key={index} convo={c} />
         ))}
       </div>
