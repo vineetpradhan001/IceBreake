@@ -21,7 +21,7 @@ export default function JoinConvo() {
       />
       <div className="convo-list">
         {getConvo.data?.map((c, index) =>
-          c.createdBy === currentUser.data._id ? null : (
+          c.createdBy === currentUser.data?._id ? null : (
             <Convo key={index} convo={c} />
           )
         )}

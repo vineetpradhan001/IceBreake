@@ -32,6 +32,7 @@ export default function Login() {
             }}
           />
           <div className="error">{error.email}</div>
+          <div className="error">{error.username}</div>
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
           <input

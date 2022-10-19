@@ -12,14 +12,14 @@ export default function Account() {
   const location = useLocation();
 
   const currentUser = useCurrentUserQuery();
-  const getConvo = useGetConvosQuery({ createdBy: currentUser.data._id });
+  const getConvo = useGetConvosQuery({ createdBy: currentUser.data?._id });
 
   return (
     <div className="account">
       <div className="user">
         <img src="/man.png" alt="" />
         <div className="user-details">
-          <span>{currentUser.data.username}</span>
+          <span>{currentUser.data?.username}</span>
           <div className="follow-details">
             <div className="followers">
               <span>Followers</span>

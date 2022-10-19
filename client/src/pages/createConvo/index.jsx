@@ -31,7 +31,7 @@ export default function CreateConvo() {
       title,
       openingMessage,
       maxUsers,
-      createdBy: currentUser.data._id,
+      createdBy: currentUser.data?._id,
     });
   };
 

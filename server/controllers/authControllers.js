@@ -1,14 +1,16 @@
 import User from "../models/User.js";
 import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
 
 const handleErrors = (err) => {
   let errors = {};
+  console.log(err);
 
   if (err.message === "incorrect email") {
     errors.email = "Email is not registered";
   }
   if (err.message === "incorrect username") {
-    errors.email = "Username is not registered";
+    errors.username = "Username is not registered";
   }
   if (err.message === "incorrect password") {
     errors.password = "Incorrect Password";
@@ -19,11 +21,14 @@ const handleErrors = (err) => {
       errors.email = "Email is already registered";
     }
     if (err.keyValue?.username) {
-      errors.email = "Username is already registered";
+      errors.username = "Username is already registered";
     }
   }
 
-  if (err.message.includes("user validation failed")) {
+  if (
+    err.message.includes("user validation failed") ||
+    err.message.includes("Validation failed")
+  ) {
     Object.values(err.errors).forEach(({ properties }) => {
       errors[properties.path] = properties.message;
     });
@@ -91,5 +96,28 @@ export const currentUser = async (req, res) => {
   } catch (e) {
     console.log(e);
     res.status(400).json(e);
+  }
+};
+export const updateUser = async (req, res) => {
+  const { currPassword, ...body } = req.body;
+
+  try {
+    const user = await verifyJWT(req.cookies.jwt);
+    if (!body.password) {
+      delete body.password;
+    }
+    const auth = await bcrypt.compare(currPassword, user.password);
+    if (auth) {
+      const updatedUser = await User.findByIdAndUpdate(user._id, body, {
+        new: true,
+        runValidators: true,
+      });
+      res.status(200).json(updatedUser._id);
+    } else {
+      res.status(400).json({ currPassword: "Incorrect Password" });
+    }
+  } catch (e) {
+    const errors = handleErrors(e);
+    res.status(400).json(errors);
   }
 };
