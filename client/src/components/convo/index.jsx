@@ -37,7 +37,12 @@ export default function Convo(props) {
           Edit
         </button>
       ) : (
-        <button className="join-button">Join</button>
+        <button
+          className="join-button"
+          onClick={() => navigate(`/chat/${props.convo._id}`)}
+        >
+          Join
+        </button>
       )}
     </div>
   );

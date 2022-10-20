@@ -12,6 +12,7 @@ import EditProfile from "./pages/editProfile";
 import Signup from "./pages/signup";
 import Login from "./pages/login";
 import EditConvo from "./pages/editConvo";
+import Chatroom from "./pages/chatroom";
 
 export default function App() {
   const navigate = useNavigate();
@@ -48,6 +49,7 @@ export default function App() {
         <Route path="/user/:id" element={<Account />} />
         <Route path="/account" element={<Account />} />
         <Route path="/editprofile" element={<EditProfile />} />
+        <Route path="/chat/:id" element={<Chatroom />} />
       </Routes>
     </>
   );
