@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import socket from "../../socket";
 
 import Textarea from "../../components/textarea";
 
@@ -10,37 +11,82 @@ export default function Chatroom() {
   return (
     <div className="chatroom">
       <div className="chatbox">
-        <div className="chat-bubble chat-bubble-received">Hi</div>
-        <div className="chat-bubble chat-bubble-received">Hi</div>
-        <div className="chat-bubble chat-bubble-received">Hi</div>
+        <div className="chat-bubble chat-bubble-received">
+          <span>Hi</span>
+          <span>~vineet</span>
+        </div>
+        <div className="chat-bubble chat-bubble-received">
+          <span>Hifdsuifhdsf vvxcvxv vdxvds sfsfkdsjb</span>
+          <span>~vineet</span>
+        </div>
+        <div className="chat-bubble chat-bubble-received">
+          <span>Hi</span>
+          <span>~vineet</span>
+        </div>
         <div className="chat-bubble chat-bubble-send">Hi</div>
         <div className="chat-bubble chat-bubble-send">Hi</div>
         <div className="chat-bubble chat-bubble-send">Hi</div>
         <div className="chat-bubble chat-bubble-send">Hi</div>
-        <div className="chat-bubble chat-bubble-received">Hi</div>
-        <div className="chat-bubble chat-bubble-received">Hi</div>
-        <div className="chat-bubble chat-bubble-received">Hi</div>
+        <div className="chat-bubble chat-bubble-received">
+          <span>Hi</span>
+          <span>~vineet</span>
+        </div>
+        <div className="chat-bubble chat-bubble-received">
+          <span>Hi</span>
+          <span>~vineet</span>
+        </div>
+        <div className="chat-bubble chat-bubble-received">
+          <span>Hi</span>
+          <span>~vineet</span>
+        </div>
         <div className="chat-bubble chat-bubble-send">Hi</div>
         <div className="chat-bubble chat-bubble-send">Hi</div>
         <div className="chat-bubble chat-bubble-send">Hi</div>
         <div className="chat-bubble chat-bubble-send">Hi</div>
-        <div className="chat-bubble chat-bubble-received">Hi</div>
-        <div className="chat-bubble chat-bubble-received">Hi</div>
-        <div className="chat-bubble chat-bubble-received">Hi</div>
+        <div className="chat-bubble chat-bubble-received">
+          <span>Hi</span>
+          <span>~vineet</span>
+        </div>
+        <div className="chat-bubble chat-bubble-received">
+          <span>Hi</span>
+          <span>~vineet</span>
+        </div>
+        <div className="chat-bubble chat-bubble-received">
+          <span>Hi</span>
+          <span>~vineet</span>
+        </div>
         <div className="chat-bubble chat-bubble-send">Hi</div>
         <div className="chat-bubble chat-bubble-send">Hi</div>
         <div className="chat-bubble chat-bubble-send">Hi</div>
         <div className="chat-bubble chat-bubble-send">Hi</div>
-        <div className="chat-bubble chat-bubble-received">Hi</div>
-        <div className="chat-bubble chat-bubble-received">Hi</div>
-        <div className="chat-bubble chat-bubble-received">Hi</div>
+        <div className="chat-bubble chat-bubble-received">
+          <span>Hi</span>
+          <span>~vineet</span>
+        </div>
+        <div className="chat-bubble chat-bubble-received">
+          <span>Hi</span>
+          <span>~vineet</span>
+        </div>
+        <div className="chat-bubble chat-bubble-received">
+          <span>Hi</span>
+          <span>~vineet</span>
+        </div>
         <div className="chat-bubble chat-bubble-send">Hi</div>
         <div className="chat-bubble chat-bubble-send">Hi</div>
         <div className="chat-bubble chat-bubble-send">Hi</div>
         <div className="chat-bubble chat-bubble-send">Hi</div>
-        <div className="chat-bubble chat-bubble-received">Hi</div>
-        <div className="chat-bubble chat-bubble-received">Hi</div>
-        <div className="chat-bubble chat-bubble-received">Hi</div>
+        <div className="chat-bubble chat-bubble-received">
+          <span>Hi</span>
+          <span>~vineet</span>
+        </div>
+        <div className="chat-bubble chat-bubble-received">
+          <span>Hi</span>
+          <span>~vineet</span>
+        </div>
+        <div className="chat-bubble chat-bubble-received">
+          <span>Hi</span>
+          <span>~vineet</span>
+        </div>
         <div className="chat-bubble chat-bubble-send">Hi</div>
         <div className="chat-bubble chat-bubble-send">Hi</div>
         <div className="chat-bubble chat-bubble-send">Hi</div>
@@ -52,7 +98,7 @@ export default function Chatroom() {
           onChange={(val) => setMessage(val)}
           placeholder="Send Message"
         />
-        <span class="material-icons-outlined">send</span>
+        <span className="material-icons-outlined">send</span>
       </div>
     </div>
   );

@@ -17,11 +17,20 @@
   font-size: 1.1rem;
   padding: 0.25rem;
   border-radius: 0.25rem;
+  max-width: 45%;
+  word-wrap: break-word;
+  white-space: pre-wrap;
 }
 .chat-bubble-received {
   background-color: black;
   color: white;
   margin-right: auto;
+  display: flex;
+  flex-direction: column;
+}
+.chat-bubble-received > span:nth-child(2) {
+  font-size: 0.8rem;
+  margin-left: auto;
 }
 .chat-bubble-send {
   border: 2px solid;
